@@ -34,7 +34,7 @@
         <item name="android:background">@color/keyboard_background_oled</item>
         <item name="keyBackground">@drawable/btn_keyboard_key_oled</item>
         <item name="functionalKeyBackground">@drawable/btn_keyboard_key_functional_oled</item>
-        <item name="spacebarBackground">@drawable/btn_keyboard_key_functional_oled</item>
+        <item name="spacebarBackground">@drawable/btn_keyboard_spacebar_oled</item>
         <item name="keyTextColor">@color/key_text_color_oled</item>
         <item name="keyTextInactivatedColor">@color/key_text_inactive_color_oled</item>
         <item name="functionalTextColor">@color/key_functional_text_color_oled</item>

@@ -42,7 +42,7 @@ public final class KeyboardTheme implements Comparable<KeyboardTheme> {
     public static final int THEME_ID_AUTO_DARK = 5;
     public static final int THEME_ID_YOU = 6;
     public static final int THEME_ID_OLED = 7;
-    public static final int DEFAULT_THEME_ID = THEME_ID_YOU;
+    public static final int DEFAULT_THEME_ID = THEME_ID_OLED;
 
     private static KeyboardTheme[] AVAILABLE_KEYBOARD_THEMES;
 
@@ -115,6 +115,14 @@ public final class KeyboardTheme implements Comparable<KeyboardTheme> {
     /* package private for testing */
     static KeyboardTheme getDefaultKeyboardTheme(final SharedPreferences prefs,
             final int sdkVersion, final KeyboardTheme[] availableThemeArray) {
+        // Use the configured default on current releases while keeping legacy defaults intact.
+        if (sdkVersion >= VERSION_CODES.S_V2) {
+            final KeyboardTheme defaultTheme =
+                    searchKeyboardThemeById(DEFAULT_THEME_ID, availableThemeArray);
+            if (defaultTheme != null && sdkVersion >= defaultTheme.mMinApiVersion) {
+                return defaultTheme;
+            }
+        }
         // TODO: This search algorithm isn't optimal if there are many themes.
         for (final KeyboardTheme theme : availableThemeArray) {
             if (sdkVersion >= theme.mMinApiVersion) {
